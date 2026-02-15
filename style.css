@@ -2,98 +2,104 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 body {
-  background: linear-gradient(180deg, #0f2027, #203a43, #2c5364);
   height: 100vh;
+  background: linear-gradient(180deg, #e6f2ff, #f7fbff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
 }
 
-#app {
-  height: 100vh;
+/* START */
+.start {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #3a6ea5;
+  animation: pulse 2s infinite;
+}
+
+/* STORIES */
+.stories {
   width: 100%;
-  position: relative;
+  height: 100%;
+  padding: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+.progress {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+
+.bar {
+  flex: 1;
+  height: 3px;
+  background: rgba(0,0,0,0.1);
+}
+
+.bar.active {
+  background: #4da3ff;
 }
 
 .story {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
+  display: none;
+  height: 100%;
   justify-content: center;
   align-items: center;
-  gap: 20px;
-  color: #fff;
-  opacity: 0;
-  transform: scale(0.95);
-  transition: all 0.6s ease;
-  backdrop-filter: blur(10px);
+  text-align: center;
+  font-size: 1.4rem;
+  color: #1f4e79;
+  animation: fade 0.5s ease;
 }
 
 .story.active {
-  opacity: 1;
-  transform: scale(1);
-  z-index: 10;
+  display: flex;
 }
 
-h1 {
-  font-size: 2rem;
-  text-align: center;
-}
-
-p {
-  opacity: 0.8;
-}
-
-button {
-  padding: 14px 26px;
-  border-radius: 30px;
-  border: none;
-  background: #00c6ff;
-  color: #000;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 0 20px #00c6ff88;
-  transition: transform 0.2s ease;
-}
-
-button:active {
-  transform: scale(0.9);
-}
-
-/* SLOT MACHINE */
-.slot-machine {
+.buttons {
+  margin-top: 30px;
   display: flex;
   gap: 15px;
-  font-size: 3rem;
-  margin: 20px 0;
-}
-
-.slot {
-  background: rgba(255,255,255,0.15);
-  padding: 20px;
-  border-radius: 15px;
-  width: 80px;
-  text-align: center;
-  animation: idleGlow 2s infinite alternate;
-}
-
-@keyframes idleGlow {
-  from { box-shadow: 0 0 10px #00c6ff55; }
-  to { box-shadow: 0 0 25px #00c6ffaa; }
-}
-
-.final .choices {
-  display: flex;
-  gap: 20px;
 }
 
 .yes {
-  background: #00ff9c;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  border-radius: 30px;
+  border: none;
+  background: #4da3ff;
+  color: white;
+  animation: pulse 1.5s infinite;
 }
 
 .no {
-  background: #ff4d4d;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border: none;
+}
+
+/* CELEBRAÇÃO */
+.celebrate {
+  text-align: center;
+  animation: fade 1s ease;
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }

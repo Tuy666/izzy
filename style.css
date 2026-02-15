@@ -25,14 +25,13 @@ body {
   background: rgba(255,255,255,0.3);
   border-radius: 10px;
   overflow: hidden;
+  z-index: 10;
 }
 
-#progress::after {
-  content: "";
-  display: block;
+#progress-fill {
   height: 100%;
   width: 0%;
-  background: #fff;
+  background: white;
   transition: width 0.4s ease;
 }
 

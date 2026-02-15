@@ -1,58 +1,58 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>💙 Story Especial</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Izzy 💙</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="app">
+<!-- TELA DE ABERTURA -->
+<div id="startScreen" class="start">
+  <p>Toque para ver o recado do nice</p>
+</div>
 
-  <!-- STORY 1 -->
-  <section class="story active">
-    <h1>Oi 👀</h1>
-    <p>Antes de tudo… presta atenção.</p>
-    <button onclick="nextStory()">Continuar</button>
-  </section>
+<!-- STORIES -->
+<div id="stories" class="stories hidden">
 
-  <!-- STORY 2 -->
-  <section class="story">
-    <h1>Tenho algo pra você 💭</h1>
-    <p>Mas não é qualquer coisa.</p>
-    <button onclick="nextStory()">Ver</button>
-  </section>
+  <div class="progress">
+    <span class="bar active"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </div>
 
-  <!-- STORY 3 - CAÇA NÍQUEL -->
-  <section class="story">
-    <h1>Gire o destino 🎰</h1>
+  <div class="story active">
+    <p>Tem pessoas que chegam devagar…<br>e quando você vê, já são casa.</p>
+  </div>
 
-    <div class="slot-machine">
-      <div class="slot" id="slot1">💙</div>
-      <div class="slot" id="slot2">💭</div>
-      <div class="slot" id="slot3">✨</div>
+  <div class="story">
+    <p>Você não entrou na minha vida fazendo barulho.<br>Entrou fazendo sentido.</p>
+  </div>
+
+  <div class="story">
+    <p>Seu sorriso acalma.<br>Seu jeito fica.<br>Seu nome mora em mim.</p>
+  </div>
+
+  <div class="story">
+    <p>Se for pra dividir o mundo,<br>que seja com você.</p>
+  </div>
+
+  <div class="story final">
+    <p>Izzy…<br>quer namorar comigo?</p>
+    <div class="buttons">
+      <button class="yes" onclick="yesClicked()">SIM 💙</button>
+      <button class="no"></button>
     </div>
+  </div>
 
-    <button onclick="spin()">Girar</button>
-  </section>
+</div>
 
-  <!-- STORY 4 -->
-  <section class="story">
-    <h1>Então…</h1>
-    <p>Depois de tudo isso…</p>
-    <button onclick="nextStory()">👉</button>
-  </section>
-
-  <!-- STORY FINAL -->
-  <section class="story final">
-    <h1>Quer namorar comigo? 💍</h1>
-    <div class="choices">
-      <button class="yes">SIM 💙</button>
-      <button class="no" id="noBtn">Não 😅</button>
-    </div>
-  </section>
-
+<div id="celebrate" class="celebrate hidden">
+  <h1>Eu te amo 💙</h1>
+  <p>Você é meu mundo.<br>Obrigado por estar comigo.</p>
 </div>
 
 <script src="script.js"></script>

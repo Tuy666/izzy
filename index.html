@@ -8,14 +8,11 @@
 </head>
 <body>
 
-<!-- TELA DE ABERTURA -->
-<div id="startScreen" class="start">
+<div id="start" class="start">
   <p>Toque para ver o recado do nice</p>
 </div>
 
-<!-- STORIES -->
 <div id="stories" class="stories hidden">
-
   <div class="progress">
     <span class="bar active"></span>
     <span class="bar"></span>
@@ -24,33 +21,36 @@
     <span class="bar"></span>
   </div>
 
-  <div class="story active">
-    <p>Tem pessoas que chegam devagar…<br>e quando você vê, já são casa.</p>
-  </div>
-
-  <div class="story">
-    <p>Você não entrou na minha vida fazendo barulho.<br>Entrou fazendo sentido.</p>
-  </div>
-
-  <div class="story">
-    <p>Seu sorriso acalma.<br>Seu jeito fica.<br>Seu nome mora em mim.</p>
-  </div>
-
-  <div class="story">
-    <p>Se for pra dividir o mundo,<br>que seja com você.</p>
-  </div>
-
-  <div class="story final">
-    <p>Izzy…<br>quer namorar comigo?</p>
-    <div class="buttons">
-      <button class="yes" onclick="yesClicked()">SIM 💙</button>
-      <button class="no"></button>
-    </div>
-  </div>
-
+  <div class="story active"><p>Você chegou sem aviso…<br>e ficou sem pedir permissão.</p></div>
+  <div class="story"><p>Tem gente que não pesa.<br>Encosta e vira casa.</p></div>
+  <div class="story"><p>Seu sorriso acalma.<br>Seu jeito fica.</p></div>
+  <div class="story"><p>Se for pra dividir o mundo,<br>que seja com você.</p></div>
+  <div class="story"><p>Agora deixa o destino falar…</p></div>
 </div>
 
-<div id="celebrate" class="celebrate hidden">
+<!-- ROLETA -->
+<div id="slot" class="slot hidden">
+  <div class="reels">
+    <div class="reel" id="r1">✨</div>
+    <div class="reel" id="r2">🍀</div>
+    <div class="reel" id="r3">💫</div>
+  </div>
+  <p class="slot-text hidden" id="slotText">
+    Parece que tirei a sorte grande com você.
+  </p>
+
+  <p class="question hidden" id="question">
+    Izzy, quer namorar comigo?
+  </p>
+
+  <div class="buttons hidden" id="buttons">
+    <button class="yes" onclick="yesClicked()">SIM 💙</button>
+    <button class="no" id="noBtn">não</button>
+  </div>
+</div>
+
+<!-- FINAL -->
+<div id="final" class="final hidden">
   <h1>Eu te amo 💙</h1>
   <p>Você é meu mundo.<br>Obrigado por estar comigo.</p>
 </div>

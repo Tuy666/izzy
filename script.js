@@ -6,7 +6,7 @@ const final = document.getElementById("final");
 const storyEls = document.querySelectorAll(".story");
 const bars = document.querySelectorAll(".bar");
 
-const reels = ["✨", "🍀", "💫", "❤️"];
+const reels = ["✨","🍀","💫","❤️"];
 const r1 = document.getElementById("r1");
 const r2 = document.getElementById("r2");
 const r3 = document.getElementById("r3");
@@ -14,36 +14,40 @@ const r3 = document.getElementById("r3");
 const slotText = document.getElementById("slotText");
 const question = document.getElementById("question");
 const buttons = document.getElementById("buttons");
+
+const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
 
-let index = 0;
-let spinning;
+let storyIndex = 0;
+let spinInterval;
 
 /* START */
-start.onclick = () => {
+start.addEventListener("click", () => {
   start.classList.add("hidden");
   stories.classList.remove("hidden");
-};
+});
 
 /* STORIES */
-stories.onclick = () => {
-  if (index < storyEls.length - 1) {
-    storyEls[index].classList.remove("active");
-    bars[index].classList.remove("active");
-    index++;
-    storyEls[index].classList.add("active");
-    bars[index].classList.add("active");
+stories.addEventListener("click", () => {
+  if (storyIndex < storyEls.length - 1) {
+    storyEls[storyIndex].classList.remove("active");
+    bars[storyIndex].classList.remove("active");
+
+    storyIndex++;
+
+    storyEls[storyIndex].classList.add("active");
+    bars[storyIndex].classList.add("active");
   } else {
     stories.classList.add("hidden");
     startSlot();
   }
-};
+});
 
 /* SLOT */
 function startSlot() {
   slot.classList.remove("hidden");
 
-  spinning = setInterval(() => {
+  spinInterval = setInterval(() => {
     r1.textContent = reels[Math.floor(Math.random()*reels.length)];
     r2.textContent = reels[Math.floor(Math.random()*reels.length)];
     r3.textContent = reels[Math.floor(Math.random()*reels.length)];
@@ -53,7 +57,8 @@ function startSlot() {
 }
 
 function stopSlot() {
-  clearInterval(spinning);
+  clearInterval(spinInterval);
+
   r1.textContent = "❤️";
   r2.textContent = "❤️";
   r3.textContent = "❤️";
@@ -68,15 +73,16 @@ function stopSlot() {
 
 /* NÃO FOGE */
 noBtn.addEventListener("touchstart", () => {
-  noBtn.style.transform = `translate(${Math.random()*200 - 100}px, ${Math.random()*200 - 100}px)`;
+  noBtn.style.transform =
+    `translate(${Math.random()*150 - 75}px, ${Math.random()*150 - 75}px)`;
 });
 
 /* SIM */
-function yesClicked() {
+yesBtn.addEventListener("click", () => {
   slot.classList.add("hidden");
   final.classList.remove("hidden");
 
   if (navigator.vibrate) {
-    navigator.vibrate([100, 50, 100]);
+    navigator.vibrate([120, 60, 120]);
   }
-}
+});

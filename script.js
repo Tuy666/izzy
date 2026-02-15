@@ -1,58 +1,41 @@
-const stories = document.querySelectorAll('.story');
-const progressFill = document.getElementById('progress-fill');
-
 let current = 0;
-const total = stories.length;
+const stories = document.querySelectorAll(".story");
 
-function showStory(index) {
-  stories.forEach(s => s.classList.remove('active'));
-  stories[index].classList.add('active');
-
-  const percent = ((index + 1) / total) * 100;
-  progressFill.style.width = percent + '%';
-
-  if (navigator.vibrate) navigator.vibrate(15);
-
-  // SLOT MACHINE
-  if (index === 5) {
-    setTimeout(() => {
-      document.querySelectorAll('.reel').forEach(r => {
-        r.style.animation = 'none';
-      });
-      document.querySelector('.slot-text').innerText =
-        'Parece que tirei a sorte grande com você.';
-      if (navigator.vibrate) navigator.vibrate([40, 60, 40]);
-    }, 1800);
-  }
+function nextStory() {
+  stories[current].classList.remove("active");
+  current++;
+  stories[current].classList.add("active");
 }
 
-document.body.addEventListener('click', () => {
-  if (current < total - 1) {
-    current++;
-    showStory(current);
-  }
-});
+const symbols = ["💙", "✨", "💍", "🔥", "🥰"];
 
-// DOUBLE TAP → CORAÇÃO 💙
-document.body.addEventListener('dblclick', (e) => {
-  const heart = document.createElement('div');
-  heart.className = 'heart';
-  heart.innerText = '💙';
-  heart.style.left = e.clientX + 'px';
-  heart.style.top = e.clientY + 'px';
-  document.body.appendChild(heart);
+function spin() {
+  let spins = 15;
+  const slots = [
+    document.getElementById("slot1"),
+    document.getElementById("slot2"),
+    document.getElementById("slot3")
+  ];
 
-  setTimeout(() => heart.remove(), 1200);
-});
+  const interval = setInterval(() => {
+    slots.forEach(slot => {
+      slot.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    });
+    spins--;
+    if (spins === 0) {
+      clearInterval(interval);
+      slots[0].textContent = "💙";
+      slots[1].textContent = "💙";
+      slots[2].textContent = "💙";
+      setTimeout(nextStory, 800);
+    }
+  }, 120);
+}
 
-// SIM
-document.getElementById('yes').addEventListener('click', (e) => {
-  e.stopPropagation();
-  document.getElementById('celebrate').style.opacity = 1;
-  if (navigator.vibrate) navigator.vibrate([60, 120, 60]);
-});
-
-// NÃO → silêncio
-document.getElementById('no').addEventListener('click', (e) => {
-  e.stopPropagation();
-});
+// BOTÃO NÃO FUGINDO
+const noBtn = document.getElementById("noBtn");
+if (noBtn) {
+  noBtn.addEventListener("mouseover", () => {
+    noBtn.style.transform = `translate(${Math.random()*200 - 100}px, ${Math.random()*200 - 100}px)`;
+  });
+}

@@ -1,36 +1,24 @@
 const stories = document.querySelectorAll('.story');
-const progress = document.querySelector('#progress');
-let current = 0;
+const progressFill = document.getElementById('progress-fill');
 
-function updateStory() {
+let current = 0;
+const total = stories.length;
+
+function showStory(index) {
   stories.forEach(s => s.classList.remove('active'));
-  stories[current].classList.add('active');
-  progress.style.setProperty(
-    '--p',
-    `${((current + 1) / stories.length) * 100}%`
-  );
-  progress.querySelector('::after');
-  progress.style.setProperty('--width', `${(current + 1) / stories.length * 100}%`);
-  progress.style.setProperty('--after-width', `${(current + 1) / stories.length * 100}%`);
-  progress.style.setProperty('width', '100%');
-  progress.style.setProperty('--after', `${(current + 1) / stories.length * 100}%`);
-  progress.style.cssText += `--after-width:${(current + 1) / stories.length * 100}%`;
-  progress.style.setProperty('--progress', `${(current + 1) / stories.length * 100}%`);
-  progress.style.setProperty('background-size', `${(current + 1) / stories.length * 100}% 100%`);
-  progress.style.setProperty('--after-width', `${(current + 1) / stories.length * 100}%`);
-  progress.querySelector(':after');
-  progress.style.setProperty('--w', `${(current + 1) / stories.length * 100}%`);
-  progress.querySelector('::after');
-  progress.style.setProperty('--after-width', `${(current + 1) / stories.length * 100}%`);
-  progress.style.setProperty('--width', `${(current + 1) / stories.length * 100}%`);
-  progress.style.setProperty('--progress', `${(current + 1) / stories.length * 100}%`);
-  progress.style.setProperty('background', `linear-gradient(to right, white ${(current + 1) / stories.length * 100}%, rgba(255,255,255,.3) 0%)`);
+  stories[index].classList.add('active');
+
+  const percent = ((index + 1) / total) * 100;
+  progressFill.style.width = percent + '%';
 
   if (navigator.vibrate) navigator.vibrate(15);
 
-  if (current === 5) {
+  // SLOT MACHINE
+  if (index === 5) {
     setTimeout(() => {
-      document.querySelectorAll('.reel').forEach(r => r.style.animation = 'none');
+      document.querySelectorAll('.reel').forEach(r => {
+        r.style.animation = 'none';
+      });
       document.querySelector('.slot-text').innerText =
         'Parece que tirei a sorte grande com você.';
       if (navigator.vibrate) navigator.vibrate([40, 60, 40]);
@@ -39,14 +27,32 @@ function updateStory() {
 }
 
 document.body.addEventListener('click', () => {
-  if (current < stories.length - 1) {
+  if (current < total - 1) {
     current++;
-    updateStory();
+    showStory(current);
   }
 });
 
+// DOUBLE TAP → CORAÇÃO 💙
 document.body.addEventListener('dblclick', (e) => {
   const heart = document.createElement('div');
   heart.className = 'heart';
   heart.innerText = '💙';
-  heart.style.left = `${e
+  heart.style.left = e.clientX + 'px';
+  heart.style.top = e.clientY + 'px';
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 1200);
+});
+
+// SIM
+document.getElementById('yes').addEventListener('click', (e) => {
+  e.stopPropagation();
+  document.getElementById('celebrate').style.opacity = 1;
+  if (navigator.vibrate) navigator.vibrate([60, 120, 60]);
+});
+
+// NÃO → silêncio
+document.getElementById('no').addEventListener('click', (e) => {
+  e.stopPropagation();
+});

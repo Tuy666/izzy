@@ -17,7 +17,7 @@ body {
 /* START */
 .start {
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: #3a6ea5;
   animation: pulse 2s infinite;
 }
@@ -29,14 +29,10 @@ body {
   padding: 20px;
 }
 
-.hidden {
-  display: none;
-}
-
 .progress {
   display: flex;
   gap: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .bar {
@@ -57,21 +53,44 @@ body {
   text-align: center;
   font-size: 1.4rem;
   color: #1f4e79;
-  animation: fade 0.5s ease;
+  animation: fade .4s;
 }
 
 .story.active {
   display: flex;
 }
 
-.buttons {
-  margin-top: 30px;
+/* SLOT */
+.slot {
+  text-align: center;
+}
+
+.reels {
   display: flex;
-  gap: 15px;
+  gap: 20px;
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.reel {
+  animation: spin .1s infinite;
+}
+
+.slot-text, .question {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: #1f4e79;
+}
+
+.buttons {
+  margin-top: 25px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
 }
 
 .yes {
-  padding: 15px 30px;
+  padding: 15px 35px;
   font-size: 1.2rem;
   border-radius: 30px;
   border: none;
@@ -81,16 +100,25 @@ body {
 }
 
 .no {
-  width: 20px;
-  height: 20px;
+  font-size: .7rem;
   background: transparent;
   border: none;
+  color: #aaa;
 }
 
-/* CELEBRAÇÃO */
-.celebrate {
+/* FINAL */
+.final {
   text-align: center;
-  animation: fade 1s ease;
+  animation: fade 1s;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes spin {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-10px); }
 }
 
 @keyframes fade {

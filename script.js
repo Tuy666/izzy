@@ -1,41 +1,34 @@
-let current = 0;
-const stories = document.querySelectorAll(".story");
+const start = document.getElementById("startScreen");
+const stories = document.getElementById("stories");
+const storyEls = document.querySelectorAll(".story");
+const bars = document.querySelectorAll(".bar");
+const celebrate = document.getElementById("celebrate");
 
-function nextStory() {
-  stories[current].classList.remove("active");
-  current++;
-  stories[current].classList.add("active");
-}
+let index = 0;
 
-const symbols = ["💙", "✨", "💍", "🔥", "🥰"];
+/* START */
+start.addEventListener("click", () => {
+  start.classList.add("hidden");
+  stories.classList.remove("hidden");
+});
 
-function spin() {
-  let spins = 15;
-  const slots = [
-    document.getElementById("slot1"),
-    document.getElementById("slot2"),
-    document.getElementById("slot3")
-  ];
+/* AVANÇAR STORY */
+stories.addEventListener("click", () => {
+  if (index < storyEls.length - 1) {
+    storyEls[index].classList.remove("active");
+    bars[index].classList.remove("active");
+    index++;
+    storyEls[index].classList.add("active");
+    bars[index].classList.add("active");
+  }
+});
 
-  const interval = setInterval(() => {
-    slots.forEach(slot => {
-      slot.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-    });
-    spins--;
-    if (spins === 0) {
-      clearInterval(interval);
-      slots[0].textContent = "💙";
-      slots[1].textContent = "💙";
-      slots[2].textContent = "💙";
-      setTimeout(nextStory, 800);
-    }
-  }, 120);
-}
+/* SIM */
+function yesClicked() {
+  stories.classList.add("hidden");
+  celebrate.classList.remove("hidden");
 
-// BOTÃO NÃO FUGINDO
-const noBtn = document.getElementById("noBtn");
-if (noBtn) {
-  noBtn.addEventListener("mouseover", () => {
-    noBtn.style.transform = `translate(${Math.random()*200 - 100}px, ${Math.random()*200 - 100}px)`;
-  });
+  if (navigator.vibrate) {
+    navigator.vibrate([100, 50, 100]);
+  }
 }
